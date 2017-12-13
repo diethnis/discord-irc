@@ -1,6 +1,94 @@
 # Changelog
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.5.0] - 2017-10-27
+### Added
+* Support multi-character command prefixes - [#301](https://github.com/reactiflux/discord-irc/pull/301)
+
+* Enable auto-renicking by default, so the bot tries to get the target nickname after it fails - [#302](https://github.com/reactiflux/discord-irc/pull/302)
+
+* Add the ability to ignore IRC/Discord users by nickname - [#322](https://github.com/reactiflux/discord-irc/pull/322)
+
+### Fixed
+* Improve IRC → Discord mentions around non-word characters and nickname prefix matches - [#273](https://github.com/reactiflux/discord-irc/pull/273)
+
+* Default to UTF-8 encoding when bridging messages to prevent character corruption - [#315](https://github.com/reactiflux/discord-irc/pull/315)
+
+* Fix a crash when using the bot in a group DM - [#316](https://github.com/reactiflux/discord-irc/pull/316)
+
+* Use a `prepare` script for transpiling instead of `prepublish`, fixing `npm` installation direct from the GitHub repository - [#323](https://github.com/reactiflux/discord-irc/pull/323)
+
+* Update dependencies:
+
+  - discord.js to 11.2.1
+  - sinon to ^4.0.1
+  - irc-upd to 0.8.0 - [#313](https://github.com/reactiflux/discord-irc/pull/313)
+  - simple-markdown to ^0.3.1
+  - coveralls to ^3.0.0
+  - mocha to ^4.0.0
+  - winston to 2.4.0
+
+### Changed
+* Add a link to the IRC spec in the README - [#307](https://github.com/reactiflux/discord-irc/pull/307)
+
+* Drop testing for Node 7, add testing for Node 8 - [#329](https://github.com/reactiflux/discord-irc/pull/329)
+
+## [2.4.2] - 2017-08-21
+### Fixed
+* Tests: Use globbing instead of `find` so tests work on Windows - [#279](https://github.com/reactiflux/discord-irc/pull/279)
+
+### Changed
+* Update dependency irc-upd to [0.7.0](https://github.com/Throne3d/node-irc/releases/tag/v0.7.0) - [#284](https://github.com/reactiflux/discord-irc/pull/284)
+
+* Tests: Use Discord objects to simplify code - [#272](https://github.com/reactiflux/discord-irc/pull/272)
+
+## [2.4.1] - 2017-07-16
+### Added
+* Falsy command preludes are no longer sent (previously would choose default prelude) - [#260](https://github.com/reactiflux/discord-irc/pull/260)
+
+### Fixed
+* Update link to IRC library in README so it points to the new irc-upd library - [#264](https://github.com/reactiflux/discord-irc/pull/264)
+
+* Update dependency commander to 2.11.0 - [#262](https://github.com/reactiflux/discord-irc/pull/262)
+
+* Fix deprecation warning on `TextChannel#sendMessage` - [#267](https://github.com/reactiflux/discord-irc/pull/267)
+
+* Fix reconnection by updating dependency irc-upd to 0.6.2 - [#270](https://github.com/reactiflux/discord-irc/pull/270)
+
+## [2.4.0] - 2017-07-01
+This project now uses [irc-upd](https://github.com/Throne3d/node-irc) as a dependency, instead of the old [irc](https://github.com/martynsmith/node-irc) package – this fork should be better maintained and will solve some bugs, detailed below.
+
+### Added
+* Allow commandCharacters to work for messages sent to Discord - [#221](https://github.com/reactiflux/discord-irc/pull/221).
+
+* Send nick changes from IRC to Discord with `ircStatusNotices` - [#235](https://github.com/reactiflux/discord-irc/pull/235), [#241](https://github.com/reactiflux/discord-irc/pull/241).
+
+* Translate custom emoji references from IRC to Discord - [#256](https://github.com/reactiflux/discord-irc/pull/256).
+
+### Fixed
+* Use `ircClient.nick` instead of `nickname` when checking if the `ircStatusNotices` event is for the bot, to prevent a potential crash - [#257](https://github.com/reactiflux/discord-irc/pull/257).
+
+* Use the updated `irc-upd` library instead of `irc`, causing IRC messages to now be split by byte instead of character (fixing [#199](https://github.com/reactiflux/discord-irc/issues/199)) and adding support for certain Unicode characters in nicknames (fixing [#200](https://github.com/reactiflux/discord-irc/issues/200)) - [#258](https://github.com/reactiflux/discord-irc/pull/258).
+
+* Update dependencies:
+
+  - discord.js to 11.1.0
+  - check-env to 1.3.0
+  - chai to ^4.0.2
+  - nyc to ^11.0.3
+  - commander to 2.10.0
+  - eslint to ^4.1.1
+
+## [2.3.3] - 2017-04-29
+### Fixed
+* Warn if a part/quit is received and no channelUsers is set -
+[#218](https://github.com/reactiflux/discord-irc/pull/218).
+
+## [2.3.2] - 2017-04-27
+### Fixed
+* Fix ircStatucNotices when channels are not lowercase -
+[#219](https://github.com/reactiflux/discord-irc/pull/219).
+
 ## [2.3.1] - 2017-04-05
 ### Fixed
 * Fix IRC quit messages sending to all channels by tracking users - [#214](https://github.com/reactiflux/discord-irc/pull/214#pullrequestreview-31156291).
